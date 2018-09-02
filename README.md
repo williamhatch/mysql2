@@ -632,3 +632,12 @@ though.
 * John Cant (http://github.com/johncant) - polishing and updating Prepared Statements support
 * Justin Case (http://github.com/justincase) - polishing and updating Prepared Statements support and getting it merged
 * Tamir Duberstein (http://github.com/tamird) - for help with timeouts and all around updates and cleanups
+
+
+fix:
+client.c:439:3: error: use of undeclared identifier 'my_bool'
+  my_bool res = mysql_read_query_result(client);
+  ^
+client.c:441:19: error: use of undeclared identifier 'res'
+  return (void *)(res == 0 ? Qtrue : Qfalse);
+
