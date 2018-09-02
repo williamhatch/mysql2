@@ -436,7 +436,7 @@ static VALUE do_send_query(void *args) {
  */
 static void *nogvl_read_query_result(void *ptr) {
   MYSQL * client = ptr;
-  my_bool res = mysql_read_query_result(client);
+  bool res = mysql_read_query_result(client);
 
   return (void *)(res == 0 ? Qtrue : Qfalse);
 }
@@ -759,7 +759,7 @@ static VALUE _mysql_client_options(VALUE self, int opt, VALUE value) {
   const void *retval = NULL;
   unsigned int intval = 0;
   const char * charval = NULL;
-  my_bool boolval;
+  bool boolval;
 
   GET_CLIENT(self);
 
@@ -794,10 +794,10 @@ static VALUE _mysql_client_options(VALUE self, int opt, VALUE value) {
       retval = &boolval;
       break;
 
-    case MYSQL_SECURE_AUTH:
-      boolval = (value == Qfalse ? 0 : 1);
-      retval = &boolval;
-      break;
+    //case MYSQL_SECURE_AUTH:
+    //  boolval = (value == Qfalse ? 0 : 1);
+    //  retval = &boolval;
+    //  break;
 
     case MYSQL_READ_DEFAULT_FILE:
       charval = (const char *)StringValueCStr(value);
@@ -1182,7 +1182,7 @@ static VALUE set_ssl_options(VALUE self, VALUE key, VALUE cert, VALUE ca, VALUE 
 }
 
 static VALUE set_secure_auth(VALUE self, VALUE value) {
-  return _mysql_client_options(self, MYSQL_SECURE_AUTH, value);
+  //return _mysql_client_options(self, MYSQL_SECURE_AUTH, value);
 }
 
 static VALUE set_read_default_file(VALUE self, VALUE value) {
