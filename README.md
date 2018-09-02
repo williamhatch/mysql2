@@ -537,3 +537,10 @@ though.
 * Aaron Patterson (http://github.com/tenderlove) - tons of contributions, suggestions and general badassness
 * Mike Perham (http://github.com/mperham) - Async Active Record adapter (uses Fibers and EventMachine)
 * Aaron Stone (http://github.com/sodabrew) - additional client settings, local files, microsecond time, maintenance support.
+
+fix:
+client.c:439:3: error: use of undeclared identifier 'my_bool'
+  my_bool res = mysql_read_query_result(client);
+  ^
+client.c:441:19: error: use of undeclared identifier 'res'
+  return (void *)(res == 0 ? Qtrue : Qfalse);
